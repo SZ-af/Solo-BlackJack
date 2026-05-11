@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- DEPOSIT SCREEN -->
+<div id="deposit-screen">
+  <div id="deposit-box">
+    <div class="deposit-title">♠ Blackjack ♠</div>
+    <p class="deposit-sub">Enter an amount to begin</p>
+    <div class="custom-row">
+      <span class="dollar-sign">$</span>
+      <input type="number" id="custom-amount" placeholder="Enter amount" min="1">
+    </div>
+    <div class="deposit-total">Deposit: <span id="deposit-preview">$0</span></div>
+    <button class="btn btn-deposit" id="deposit-btn" disabled>Add Funds &amp; Play →</button>
+  </div>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="bj" style="display:none">
+  <div class="felt-border"></div>
+
+  <div class="layer top-bar">
+    <div class="title">♠ Blackjack ♠</div>
+    <button class="btn btn-add-funds" id="add-funds-btn">+ Add Funds</button>
+  </div>
+
+  <div class="layer stats-row">
+    <div class="stat"><span class="stat-label">Balance</span><span class="stat-value gold" id="balance">$0</span></div>
+    <div class="stat"><span class="stat-label">Bet</span><span class="stat-value" id="current-bet">$0</span></div>
+    <div class="stat"><span class="stat-label">Wins</span><span class="stat-value" id="wins">0</span></div>
+    <div class="stat"><span class="stat-label">Losses</span><span class="stat-value" id="losses">0</span></div>
+  </div>
+
+  <div class="layer hand-section">
+    <div style="display:flex;align-items:center">
+      <span class="hand-label">Dealer</span>
+      <span class="score-badge" id="dealer-score">?</span>
+    </div>
+    <div class="cards-row" id="dealer-cards"></div>
+  </div>
+
+  <hr class="layer divider">
+
+  <div class="layer hand-section">
+    <div style="display:flex;align-items:center">
+      <span class="hand-label">Player</span>
+      <span class="score-badge" id="player-score">0</span>
+    </div>
+    <div class="cards-row" id="player-cards"></div>
+  </div>
+
+  <div class="layer message info" id="message">Place your bet to begin</div>
+
+  <div class="layer bet-section" id="bet-area">
+    <div class="chips-row">
+      <div class="chip" data-v="5">$5</div>
+      <div class="chip" data-v="10">$10</div>
+      <div class="chip" data-v="25">$25</div>
+      <div class="chip" data-v="50">$50</div>
+      <div class="chip" data-v="100">$100</div>
+    </div>
+    <div class="bet-controls">
+      <button class="btn btn-clear" id="clear-bet">Clear</button>
+      <div class="bet-display" id="bet-display">Bet: $0</div>
+      <button class="btn btn-deal" id="deal-btn">Deal</button>
+    </div>
+  </div>
+
+  <div class="layer actions" id="action-area" style="display:none">
+    <button class="btn btn-hit"    id="hit-btn">Hit</button>
+    <button class="btn btn-stand"  id="stand-btn">Stand</button>
+    <button class="btn btn-double" id="double-btn">Double</button>
+  </div>
+
+  <div class="layer" id="new-area" style="display:none;text-align:center">
+    <button class="btn btn-new" id="new-btn">New Hand ↺</button>
+  </div>
+</div>
+
+<!-- ADD FUNDS MODAL -->
+<div id="modal-overlay" style="display:none">
+  <div id="modal-box">
+    <div class="modal-title">Add Funds</div>
+    <div class="custom-row">
+      <span class="dollar-sign">$</span>
+      <input type="number" id="modal-custom-amount" placeholder="Enter amount" min="1">
+    </div>
+    <div class="deposit-total">Deposit: <span id="modal-deposit-preview">$0</span></div>
+    <div class="modal-btns">
+      <button class="btn btn-clear" id="modal-cancel">Cancel</button>
+      <button class="btn btn-deposit" id="modal-confirm-btn" disabled>Confirm →</button>
+    </div>
+  </div>
+</div>
+
+<script src="blackjack.js"></script>
+</body>
+</html>
