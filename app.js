@@ -41,7 +41,7 @@ function setupDepositScreen() {
   });
 }
 
-// ADD FUNDS 
+// ADD FUND
 
 function setupModal() {
   const overlay     = document.getElementById('modal-overlay');
@@ -90,7 +90,7 @@ function setupModal() {
   });
 }
 
-// ─── Deck ─────────────────────────────────────────────────────────────────────
+// DECK
 
 function buildDeck() {
   const deck = [];
@@ -106,7 +106,7 @@ function buildDeck() {
   return deck;
 }
 
-// ─── Scoring ──────────────────────────────────────────────────────────────────
+// SCORING
 
 function cardValue(rank) {
   if (rank === 'A') return 11;
@@ -125,7 +125,7 @@ function handScore(hand) {
   return score;
 }
 
-// ─── Rendering ────────────────────────────────────────────────────────────────
+// RENDERING
 
 function createCardElement(card, hidden = false) {
   const div = document.createElement('div');
@@ -170,6 +170,17 @@ function updateStats() {
   document.getElementById('wins').textContent        = state.wins;
   document.getElementById('losses').textContent      = state.losses;
   document.getElementById('bet-display').textContent = 'Bet: $' + state.bet;
+  updateChips();
+}
+
+function updateChips() {
+  const remaining = state.balance - state.bet;
+  document.querySelectorAll('.chip').forEach(chip => {
+    const value = parseInt(chip.dataset.v);
+    chip.style.display = value <= state.balance ? 'flex' : 'none';
+    chip.style.opacity = value <= remaining ? '1' : '0.35';
+    chip.style.cursor  = value <= remaining ? 'pointer' : 'not-allowed';
+  });
 }
 
 function setMessage(text, type = '') {
